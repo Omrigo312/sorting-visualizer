@@ -1,0 +1,38 @@
+#bodyContainer {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+}
+
+.arrayElement {
+  padding-bottom: 30px;
+  bottom: 0;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  vertical-align: bottom;
+  display: inline-block;
+}
+
+.value {
+  margin-top: 0.5rem;
+  font-weight: 700;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+}
+
+.index {
+  margin-top: -1.5rem;
+  color: black;
+  font-family: sans-serif;
+  font-size: 1.2rem;
+}
+
+.arrow-down {
+  margin-top: -2rem;
+  color: black;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}

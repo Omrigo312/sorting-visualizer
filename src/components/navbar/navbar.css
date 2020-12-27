@@ -1,0 +1,38 @@
+.navbar > * {
+  margin-right: 2.5%;
+}
+
+.navbar {
+  background-image: url(../../images/navbar-image.jpg);
+  background-size: cover;
+  color: black;
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons > button {
+  margin-top: 0.2rem;
+}
+
+.logo {
+  width: 3rem;
+  margin-right: 0.5rem;
+}
+
+.navbar-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.toggle-group {
+  background-color: rgb(255, 255, 255, 0.6);
+}
+
+.toggle-group * {
+  color: rgb(54, 53, 53);
+}
