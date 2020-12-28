@@ -77,7 +77,7 @@ export default function NavBar() {
             <img src={icon} className="logo" alt="logo" />
             <h2>Sort It Out!</h2>
           </Grid>
-          <Grid item xs={3} style={{ alignItems: 'center', display: 'grid' }}>
+          <Grid item xs={3} className="vertical-align">
             <div>
               <Typography gutterBottom>Array Size</Typography>
               <Grid container>
@@ -114,7 +114,7 @@ export default function NavBar() {
               </Grid>
             </div>
           </Grid>
-          <Grid item xs={3} style={{ alignItems: 'center', display: 'grid' }}>
+          <Grid item xs={3} className="vertical-align">
             <div>
               <Typography gutterBottom>Speed</Typography>
               <Grid container>
@@ -144,7 +144,7 @@ export default function NavBar() {
               </Grid>
             </div>
           </Grid>
-          <Grid className="buttons" item xs={1} style={{ display: 'grid', alignItems: 'center' }}>
+          <Grid className="buttons, vertical-align" item xs={1}>
             <Button
               variant="contained"
               style={{

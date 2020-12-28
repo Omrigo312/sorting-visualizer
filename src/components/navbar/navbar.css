@@ -36,3 +36,8 @@
 .toggle-group * {
   color: rgb(54, 53, 53);
 }
+
+.vertical-align {
+  display: grid;
+  align-items: center;
+}
