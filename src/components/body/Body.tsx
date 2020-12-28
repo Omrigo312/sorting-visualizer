@@ -6,7 +6,8 @@ import './body.css';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { mergeSort } from '../../algorithms/mergeSort';
 import { bubbleSort } from '../../algorithms/bubbleSort';
-import { BUBBLE_SORT, MERGE_SORT } from '../../consts';
+import { BUBBLE_SORT, MERGE_SORT, QUICK_SORT } from '../../consts';
+import { quickSort } from '../../algorithms/quickSort';
 
 export default function Body() {
   const arraySize = useSelector((state: any) => state.arraySize);
@@ -19,11 +20,18 @@ export default function Body() {
   const switchNode = useSelector((state: any) => state.bubbleSwitchNode);
 
   // Merge sort
-  const leftGroup = useSelector((state: any) => state.mergeLeftGroup);
-  const rightGroup = useSelector((state: any) => state.mergeRightGroup);
-  const comparisonPair = useSelector((state: any) => state.mergeComparisonPair);
-  const chosenNode = useSelector((state: any) => state.mergeChosenNode);
-  const counterGroup = useSelector((state: any) => state.mergeCounterGroup);
+  const mergeLeftGroup = useSelector((state: any) => state.mergeLeftGroup);
+  const mergeRightGroup = useSelector((state: any) => state.mergeRightGroup);
+  const mergeComparisonPair = useSelector((state: any) => state.mergeComparisonPair);
+  const mergeChosenNode = useSelector((state: any) => state.mergeChosenNode);
+  const mergeCounterGroup = useSelector((state: any) => state.mergeCounterGroup);
+
+  // Quick sort
+  const quickPivotNode = useSelector((state: any) => state.quickPivotNode);
+  const quickSubArray = useSelector((state: any) => state.quickSubArray);
+  const quickCheckNode = useSelector((state: any) => state.quickCheckNode);
+  const quickChosenNode = useSelector((state: any) => state.quickChosenNode);
+  const quickSwapNode = useSelector((state: any) => state.quickSwapNode);
 
   const dispatch = useDispatch();
 
@@ -35,6 +43,9 @@ export default function Body() {
           break;
         case MERGE_SORT:
           mergeSort(dispatch);
+          break;
+        case QUICK_SORT:
+          quickSort(dispatch);
           break;
       }
     }
@@ -52,9 +63,36 @@ export default function Body() {
   const nodeColor = 'rgba(66, 134, 244, .8)';
   const currentNodeColor = 'rgba(0, 0, 0, .8)';
   const switchNodeColor = 'rgba(100, 100, 100, 0.8)';
-  const mergeLeftGroupColor = 'rgba(255, 153, 51, .6)';
-  const mergeRightGroupColor = 'rgba(153, 51, 255, .6)';
-  const mergeChosenNodeColor = 'rgba(102, 255, 102, .6)';
+  const groupColor1 = 'rgba(255, 153, 51, .6)';
+  const groupColor2 = 'rgba(153, 51, 255, .6)';
+  const chosenNodeColor = 'rgba(102, 255, 102, .6)';
+
+  const determineNodeColor = (index: number) => {
+    switch (sortingAlgorithm) {
+      case BUBBLE_SORT:
+        return index === currentNode ? currentNodeColor : index === switchNode ? switchNodeColor : nodeColor;
+      case MERGE_SORT:
+        return index === mergeChosenNode
+          ? chosenNodeColor
+          : mergeLeftGroup[index]
+          ? groupColor1
+          : mergeRightGroup[index]
+          ? groupColor2
+          : nodeColor;
+      case QUICK_SORT:
+        return index === quickPivotNode
+          ? currentNodeColor
+          : index === quickChosenNode
+          ? chosenNodeColor
+          : index === quickCheckNode
+          ? switchNodeColor
+          : quickSubArray[index]
+          ? groupColor1
+          : nodeColor;
+      default:
+        return nodeColor;
+    }
+  };
 
   return (
     <div id="bodyContainer">
@@ -69,24 +107,15 @@ export default function Body() {
                 width: `${width}px`,
                 marginLeft: `${margin}px`,
                 marginRight: `${margin}px`,
-                backgroundColor:
-                  index === currentNode && currentNode !== -1
-                    ? currentNodeColor
-                    : index === switchNode && switchNode !== -1
-                    ? switchNodeColor
-                    : index === chosenNode
-                    ? mergeChosenNodeColor
-                    : leftGroup[index]
-                    ? mergeLeftGroupColor
-                    : rightGroup[index]
-                    ? mergeRightGroupColor
-                    : nodeColor,
+                backgroundColor: determineNodeColor(index),
                 color,
                 fontSize: `${fontSize}px`,
               }}
             >
-              {counterGroup[index] && <p className="index">{counterGroup[index]}</p>}
-              {comparisonPair[index] && !counterGroup[index] && <ArrowDropDownIcon className="arrow-down" />}
+              {mergeCounterGroup[index] && <p className="index">{mergeCounterGroup[index]}</p>}
+              {((mergeComparisonPair[index] && !mergeCounterGroup[index]) || index === quickSwapNode) && (
+                <ArrowDropDownIcon className="arrow-down" />
+              )}
               <p className="value">{value}</p>
             </div>
           );

@@ -19,4 +19,9 @@ export class AppState {
   public mergeComparisonPair: object = {};
   public mergeCounterGroup: any = {};
   public mergeChosenNode: number = -1;
+  public quickPivotNode: number = -1;
+  public quickSubArray: object = {};
+  public quickCheckNode: number = -1;
+  public quickChosenNode: number = -1;
+  public quickSwapNode: number = -1;
 }

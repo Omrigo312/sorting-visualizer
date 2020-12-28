@@ -19,6 +19,11 @@ export function reducer(state: AppState, action: Action): AppState {
     SET_MERGE_LEFT_GROUP,
     SET_MERGE_RIGHT_GROUP,
     SET_SORTING_ALGORITHM,
+    SET_QUICK_CHECK_NODE,
+    SET_QUICK_CHOSEN_NODE,
+    SET_QUICK_PIVOT_NODE,
+    SET_QUICK_SUB_ARRAY,
+    SET_QUICK_SWAP_NODE,
   } = ActionType;
   switch (type) {
     case SET_SPEED:
@@ -47,6 +52,11 @@ export function reducer(state: AppState, action: Action): AppState {
         mergeCounterGroup: {},
         mergeLeftGroup: {},
         mergeRightGroup: {},
+        quickCheckNode: -1,
+        quickChosenNode: -1,
+        quickPivotNode: -1,
+        quickSubArray: {},
+        quickSwapNode: -1,
       };
     case NEW_ARRAY:
       return {
@@ -99,6 +109,32 @@ export function reducer(state: AppState, action: Action): AppState {
         ...state,
         mergeChosenNode: payload,
       };
+    case SET_QUICK_PIVOT_NODE:
+      return {
+        ...state,
+        quickPivotNode: payload,
+      };
+    case SET_QUICK_SUB_ARRAY:
+      return {
+        ...state,
+        quickSubArray: payload,
+      };
+    case SET_QUICK_SWAP_NODE:
+      return {
+        ...state,
+        quickSwapNode: payload,
+      };
+    case SET_QUICK_CHECK_NODE:
+      return {
+        ...state,
+        quickCheckNode: payload,
+      };
+    case SET_QUICK_CHOSEN_NODE:
+      return {
+        ...state,
+        quickChosenNode: payload,
+      };
+
     default:
       return state;
   }

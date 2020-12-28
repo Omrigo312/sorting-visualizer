@@ -18,6 +18,7 @@ import {
   SPEED_SLIDER_JUMP,
   BUBBLE_SORT,
   MERGE_SORT,
+  QUICK_SORT,
 } from '../../consts';
 import { ActionType } from '../../redux/actionTypes';
 import { useDispatch, useSelector } from 'react-redux';
@@ -176,7 +177,7 @@ export default function NavBar() {
                 Merge Sort
               </ToggleButton>
             </ToggleButtonGroup>
-            {/* <ToggleButtonGroup
+            <ToggleButtonGroup
               className="toggle-group"
               orientation="vertical"
               value={sortingAlgorithm}
@@ -184,13 +185,13 @@ export default function NavBar() {
               onChange={setSortingAlgorithm}
               aria-label="Choose Sorting Algorithm"
             >
-              <ToggleButton value="quick" aria-label="quick sort">
+              <ToggleButton value={QUICK_SORT} aria-label="quick sort">
                 Quick Sort
               </ToggleButton>
               <ToggleButton value="some" aria-label="some sort">
                 Some Sort
               </ToggleButton>
-            </ToggleButtonGroup> */}
+            </ToggleButtonGroup>
           </Grid>
         </Grid>
       </Toolbar>

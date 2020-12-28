@@ -8,6 +8,7 @@ export const MAX_SPEED = 100;
 export const SPEED_SLIDER_JUMP = 1;
 export const BUBBLE_SORT = 'BUBBLE_SORT';
 export const MERGE_SORT = 'MERGE_SORT';
+export const QUICK_SORT = 'QUICK_SORT';
 
 export const delay = (speedChange: number) => {
   const newSpeed = store.getState().speed + speedChange;
