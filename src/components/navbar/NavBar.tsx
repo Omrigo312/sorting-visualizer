@@ -66,7 +66,7 @@ export default function NavBar() {
 
   const setSortingAlgorithm = (event: React.MouseEvent<HTMLElement>, sortingAlgorithm: string) => {
     if (isSorting) dispatch({ type: ActionType.END_SORT });
-    dispatch({ type: ActionType.SET_SORTING_ALGORITHM, payload: sortingAlgorithm });
+    if (sortingAlgorithm) dispatch({ type: ActionType.SET_SORTING_ALGORITHM, payload: sortingAlgorithm });
   };
 
   return (
@@ -77,70 +77,74 @@ export default function NavBar() {
             <img src={icon} className="logo" alt="logo" />
             <h2>Sort It Out!</h2>
           </Grid>
-          <Grid item xs={3}>
-            <Typography gutterBottom>Array Size</Typography>
-            <Grid container>
-              <Grid item>
-                <IconButton
-                  aria-label="subtract"
-                  style={{ paddingTop: 0 }}
-                  color="primary"
-                  onClick={() => changeArraySize(-ARRAY_SIZE_SLIDER_JUMP)}
-                >
-                  <IndeterminateCheckBoxIcon />
-                </IconButton>
+          <Grid item xs={3} style={{ alignItems: 'center', display: 'grid' }}>
+            <div>
+              <Typography gutterBottom>Array Size</Typography>
+              <Grid container>
+                <Grid item>
+                  <IconButton
+                    aria-label="subtract"
+                    style={{ paddingTop: 0 }}
+                    color="primary"
+                    onClick={() => changeArraySize(-ARRAY_SIZE_SLIDER_JUMP)}
+                  >
+                    <IndeterminateCheckBoxIcon />
+                  </IconButton>
+                </Grid>
+                <Grid item xs>
+                  <Slider
+                    value={arraySize}
+                    step={ARRAY_SIZE_SLIDER_JUMP}
+                    valueLabelDisplay="auto"
+                    min={MIN_ARRAY_SIZE}
+                    max={MAX_ARRAY_SIZE}
+                    onChange={onSizeChange}
+                  />
+                </Grid>
+                <Grid item>
+                  <IconButton
+                    aria-label="add"
+                    color="primary"
+                    style={{ paddingTop: 0 }}
+                    onClick={() => changeArraySize(ARRAY_SIZE_SLIDER_JUMP)}
+                  >
+                    <AddBoxIcon />
+                  </IconButton>
+                </Grid>
               </Grid>
-              <Grid item xs>
-                <Slider
-                  value={arraySize}
-                  step={ARRAY_SIZE_SLIDER_JUMP}
-                  valueLabelDisplay="auto"
-                  min={MIN_ARRAY_SIZE}
-                  max={MAX_ARRAY_SIZE}
-                  onChange={onSizeChange}
-                />
-              </Grid>
-              <Grid item>
-                <IconButton
-                  aria-label="add"
-                  color="primary"
-                  style={{ paddingTop: 0 }}
-                  onClick={() => changeArraySize(ARRAY_SIZE_SLIDER_JUMP)}
-                >
-                  <AddBoxIcon />
-                </IconButton>
-              </Grid>
-            </Grid>
+            </div>
           </Grid>
-          <Grid item xs={3}>
-            <Typography gutterBottom>Speed</Typography>
-            <Grid container>
-              <Grid item>
-                <IconButton
-                  aria-label="subtract"
-                  color="primary"
-                  style={{ paddingTop: 0 }}
-                  onClick={() => changeSpeed(-SPEED_SLIDER_JUMP)}
-                >
-                  <IndeterminateCheckBoxIcon />
-                </IconButton>
+          <Grid item xs={3} style={{ alignItems: 'center', display: 'grid' }}>
+            <div>
+              <Typography gutterBottom>Speed</Typography>
+              <Grid container>
+                <Grid item>
+                  <IconButton
+                    aria-label="subtract"
+                    color="primary"
+                    style={{ paddingTop: 0 }}
+                    onClick={() => changeSpeed(-SPEED_SLIDER_JUMP)}
+                  >
+                    <IndeterminateCheckBoxIcon />
+                  </IconButton>
+                </Grid>
+                <Grid item xs>
+                  <Slider value={speed} min={MIN_SPEED} max={MAX_SPEED} onChange={onSpeedChange} />
+                </Grid>
+                <Grid item>
+                  <IconButton
+                    aria-label="add"
+                    color="primary"
+                    style={{ paddingTop: 0 }}
+                    onClick={() => changeSpeed(SPEED_SLIDER_JUMP)}
+                  >
+                    <AddBoxIcon />
+                  </IconButton>
+                </Grid>
               </Grid>
-              <Grid item xs>
-                <Slider value={speed} min={MIN_SPEED} max={MAX_SPEED} onChange={onSpeedChange} />
-              </Grid>
-              <Grid item>
-                <IconButton
-                  aria-label="add"
-                  color="primary"
-                  style={{ paddingTop: 0 }}
-                  onClick={() => changeSpeed(SPEED_SLIDER_JUMP)}
-                >
-                  <AddBoxIcon />
-                </IconButton>
-              </Grid>
-            </Grid>
+            </div>
           </Grid>
-          <Grid className="buttons" item xs={1}>
+          <Grid className="buttons" item xs={1} style={{ display: 'grid', alignItems: 'center' }}>
             <Button
               variant="contained"
               style={{
