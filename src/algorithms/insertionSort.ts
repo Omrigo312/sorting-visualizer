@@ -14,7 +14,7 @@ export const insertionSort = async (dispatch: Dispatch) => {
 
       let j = i - 1;
       while (j >= 0 && key < array[j]) {
-        dispatch({ type: ActionType.SET_INSERTION_SWITCH_NODE, payload: j });
+        dispatch({ type: ActionType.SET_INSERTION_SWITCH_NODE, payload: j+1 });
         await delay();
         array[j + 1] = array[j];
         j--;
