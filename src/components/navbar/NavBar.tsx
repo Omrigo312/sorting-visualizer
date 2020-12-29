@@ -74,7 +74,7 @@ export default function NavBar() {
   return (
     <AppBar position="static">
       <Toolbar className="navbar" style={{ minHeight: 128 }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} style={{ marginBottom: '0.2rem' }}>
           <Hidden mdDown>
             <Grid className="navbar-header" item xs={2}>
               <img src={icon} className="logo" alt="logo" />
@@ -172,7 +172,7 @@ export default function NavBar() {
               New
             </Button>
           </Grid>
-          <Grid item lg={3} xs style={{ textAlign: 'center' }}>
+          <Grid item lg={3} xs style={{ display: 'flex' }}>
             <ToggleButtonGroup
               className="toggle-group"
               orientation="vertical"
