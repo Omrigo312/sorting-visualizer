@@ -11,12 +11,12 @@ export const bubbleSort = async (dispatch: Dispatch) => {
       await (async () => {
         for (let b = 0; b < array.length; b++) {
           dispatch({ type: ActionType.SET_BUBBLE_CURRENT_NODE, payload: b });
-          await delay(0);
+          await delay();
 
           if (array[b] > array[b + 1]) {
             sorted = false;
             dispatch({ type: ActionType.SET_BUBBLE_SWITCH_NODE, payload: b + 1 });
-            await delay(-1);
+            await delay();
 
             if (!store.getState().isSorting) return dispatch({ type: ActionType.END_SORT });
 
@@ -28,7 +28,7 @@ export const bubbleSort = async (dispatch: Dispatch) => {
             dispatch({ type: ActionType.SET_BUBBLE_SWITCH_NODE, payload: b });
             dispatch({ type: ActionType.SET_BUBBLE_CURRENT_NODE, payload: b + 1 });
 
-            await delay(-1);
+            await delay();
             dispatch({ type: ActionType.SET_BUBBLE_SWITCH_NODE, payload: -1 });
             dispatch({ type: ActionType.UPDATE_ARRAY, payload: array });
           }

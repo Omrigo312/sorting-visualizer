@@ -9,14 +9,13 @@ export const SPEED_SLIDER_JUMP = 1;
 export const BUBBLE_SORT = 'BUBBLE_SORT';
 export const MERGE_SORT = 'MERGE_SORT';
 export const QUICK_SORT = 'QUICK_SORT';
+export const INSERTION_SORT = 'INSERTION_SORT';
 
-export const delay = (speedChange: number) => {
-  const newSpeed = store.getState().speed + speedChange;
-  const delayTime = Math.floor((100 - newSpeed) * 5) + 1;
+export const delay = () => {
   const { isSorting, speed } = store.getState();
+  const delayTime = Math.floor((100 - speed) * 5) + 1;
   return new Promise((resolve, reject) => {
     if (!isSorting) reject();
-    else if (speed === 100 && speedChange !== 0) resolve(0);
     else setTimeout(resolve, delayTime);
   });
 };

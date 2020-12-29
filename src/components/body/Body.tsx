@@ -6,8 +6,9 @@ import './body.css';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { mergeSort } from '../../algorithms/mergeSort';
 import { bubbleSort } from '../../algorithms/bubbleSort';
-import { BUBBLE_SORT, MERGE_SORT, QUICK_SORT } from '../../consts';
+import { BUBBLE_SORT, INSERTION_SORT, MERGE_SORT, QUICK_SORT } from '../../consts';
 import { quickSort } from '../../algorithms/quickSort';
+import { insertionSort } from '../../algorithms/insertionSort';
 
 export default function Body() {
   const arraySize = useSelector((state: any) => state.arraySize);
@@ -33,6 +34,10 @@ export default function Body() {
   const quickChosenNode = useSelector((state: any) => state.quickChosenNode);
   const quickSwapNode = useSelector((state: any) => state.quickSwapNode);
 
+  // Insertion sort
+  const insertionCurrentNode = useSelector((state: any) => state.insertionCurrentNode);
+  const insertionSwitchNode = useSelector((state: any) => state.insertionSwitchNode);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,6 +51,12 @@ export default function Body() {
           break;
         case QUICK_SORT:
           quickSort(dispatch);
+          break;
+        case INSERTION_SORT:
+          insertionSort(dispatch);
+          break;
+        default:
+          bubbleSort(dispatch);
           break;
       }
     }
@@ -88,6 +99,12 @@ export default function Body() {
           ? switchNodeColor
           : quickSubArray[index]
           ? groupColor1
+          : nodeColor;
+      case INSERTION_SORT:
+        return index === insertionCurrentNode
+          ? currentNodeColor
+          : index === insertionSwitchNode
+          ? switchNodeColor
           : nodeColor;
       default:
         return nodeColor;

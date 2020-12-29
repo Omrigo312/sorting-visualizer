@@ -23,7 +23,7 @@ const merge = async (
   let index = 0;
   while (leftStart <= leftEnd && rightStart <= rightEnd) {
     dispatch({ type: ActionType.SET_MERGE_COMPARISON_PAIR, payload: { [leftStart]: true, [rightStart]: true } });
-    await delay(0);
+    await delay();
     if (array[leftStart] <= array[rightStart]) {
       dispatch({ type: ActionType.SET_MERGE_CHOSEN_NODE, payload: leftStart });
       dispatch({
@@ -41,7 +41,7 @@ const merge = async (
       temp[index] = array[rightStart];
       rightStart++;
     }
-    await delay(0);
+    await delay();
     index++;
   }
 
@@ -53,7 +53,7 @@ const merge = async (
       type: ActionType.SET_MERGE_COUNTER_GROUP,
       payload: { ...store.getState().mergeCounterGroup, [leftStart]: index + 1 },
     });
-    await delay(0);
+    await delay();
     temp[index] = array[leftStart];
     index++;
     leftStart++;
@@ -64,7 +64,7 @@ const merge = async (
       type: ActionType.SET_MERGE_COUNTER_GROUP,
       payload: { ...store.getState().mergeCounterGroup, [rightStart]: index + 1 },
     });
-    await delay(0);
+    await delay();
     temp[index] = array[rightStart];
     index++;
     rightStart++;
@@ -91,7 +91,7 @@ export const mergeSort = async (dispatch: Dispatch) => {
         dispatch({ type: ActionType.SET_MERGE_COMPARISON_PAIR, payload: {} });
         dispatch({ type: ActionType.SET_MERGE_COUNTER_GROUP, payload: {} });
         dispatch({ type: ActionType.SET_MERGE_CHOSEN_NODE, payload: -1 });
-        await delay(0);
+        await delay();
 
         if (rightStart >= length) {
           break;
