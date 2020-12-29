@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionType } from '../../redux/actionTypes';
 import './body.css';
@@ -9,6 +9,7 @@ import { bubbleSort } from '../../algorithms/bubbleSort';
 import { BUBBLE_SORT, INSERTION_SORT, MERGE_SORT, QUICK_SORT } from '../../consts';
 import { quickSort } from '../../algorithms/quickSort';
 import { insertionSort } from '../../algorithms/insertionSort';
+import { Hidden } from '@material-ui/core';
 
 export default function Body() {
   const arraySize = useSelector((state: any) => state.arraySize);
@@ -135,11 +136,19 @@ export default function Body() {
                 fontSize: `${fontSize}px`,
               }}
             >
-              {mergeCounterGroup[index] && <p className="index">{mergeCounterGroup[index]}</p>}
-              {((mergeComparisonPair[index] && !mergeCounterGroup[index]) || index === quickSwapNode) && (
-                <ArrowDropDownIcon className="arrow-down" />
+              {mergeCounterGroup[index] && (
+                <Hidden smDown>
+                  <p className="index">{mergeCounterGroup[index]}</p>
+                </Hidden>
               )}
-              <p className="value">{value}</p>
+              {((mergeComparisonPair[index] && !mergeCounterGroup[index]) || index === quickSwapNode) && (
+                <Hidden smDown>
+                  <ArrowDropDownIcon className="arrow-down" />
+                </Hidden>
+              )}
+              <Hidden smDown>
+                <p className="value">{value}</p>
+              </Hidden>
             </div>
           );
         })}

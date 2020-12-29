@@ -1,4 +1,4 @@
-import { AppBar, Button, IconButton, Slider, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Button, Hidden, IconButton, Slider, Toolbar, Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import AddBoxIcon from '@material-ui/icons/AddBox';
@@ -74,25 +74,29 @@ export default function NavBar() {
   return (
     <AppBar position="static">
       <Toolbar className="navbar" style={{ minHeight: 128 }}>
-        <Grid container spacing={3}>
-          <Grid className="navbar-header" item xs={2}>
-            <img src={icon} className="logo" alt="logo" />
-            <h2>Sort It Out!</h2>
-          </Grid>
-          <Grid item xs={3} className="vertical-align">
+        <Grid container spacing={2}>
+          <Hidden mdDown>
+            <Grid className="navbar-header" item xs={2}>
+              <img src={icon} className="logo" alt="logo" />
+              <h2>Sort It Out!</h2>
+            </Grid>
+          </Hidden>
+          <Grid item lg={3} xs={6} className="vertical-align">
             <div>
               <Typography gutterBottom>Array Size</Typography>
               <Grid container>
-                <Grid item>
-                  <IconButton
-                    aria-label="subtract"
-                    style={{ paddingTop: 0 }}
-                    color="primary"
-                    onClick={() => changeArraySize(-ARRAY_SIZE_SLIDER_JUMP)}
-                  >
-                    <IndeterminateCheckBoxIcon />
-                  </IconButton>
-                </Grid>
+                <Hidden xsDown>
+                  <Grid item>
+                    <IconButton
+                      aria-label="subtract"
+                      style={{ paddingTop: 0 }}
+                      color="primary"
+                      onClick={() => changeArraySize(-ARRAY_SIZE_SLIDER_JUMP)}
+                    >
+                      <IndeterminateCheckBoxIcon />
+                    </IconButton>
+                  </Grid>
+                </Hidden>
                 <Grid item xs>
                   <Slider
                     value={arraySize}
@@ -104,49 +108,55 @@ export default function NavBar() {
                   />
                 </Grid>
                 <Grid item>
-                  <IconButton
-                    aria-label="add"
-                    color="primary"
-                    style={{ paddingTop: 0 }}
-                    onClick={() => changeArraySize(ARRAY_SIZE_SLIDER_JUMP)}
-                  >
-                    <AddBoxIcon />
-                  </IconButton>
+                  <Hidden xsDown>
+                    <IconButton
+                      aria-label="add"
+                      color="primary"
+                      style={{ paddingTop: 0 }}
+                      onClick={() => changeArraySize(ARRAY_SIZE_SLIDER_JUMP)}
+                    >
+                      <AddBoxIcon />
+                    </IconButton>
+                  </Hidden>
                 </Grid>
               </Grid>
             </div>
           </Grid>
-          <Grid item xs={3} className="vertical-align">
+          <Grid item lg={3} xs={6} className="vertical-align">
             <div>
               <Typography gutterBottom>Speed</Typography>
               <Grid container>
-                <Grid item>
-                  <IconButton
-                    aria-label="subtract"
-                    color="primary"
-                    style={{ paddingTop: 0 }}
-                    onClick={() => changeSpeed(-SPEED_SLIDER_JUMP)}
-                  >
-                    <IndeterminateCheckBoxIcon />
-                  </IconButton>
-                </Grid>
+                <Hidden xsDown>
+                  <Grid item>
+                    <IconButton
+                      aria-label="subtract"
+                      color="primary"
+                      style={{ paddingTop: 0 }}
+                      onClick={() => changeSpeed(-SPEED_SLIDER_JUMP)}
+                    >
+                      <IndeterminateCheckBoxIcon />
+                    </IconButton>
+                  </Grid>
+                </Hidden>
                 <Grid item xs>
                   <Slider value={speed} min={MIN_SPEED} max={MAX_SPEED} onChange={onSpeedChange} />
                 </Grid>
-                <Grid item>
-                  <IconButton
-                    aria-label="add"
-                    color="primary"
-                    style={{ paddingTop: 0 }}
-                    onClick={() => changeSpeed(SPEED_SLIDER_JUMP)}
-                  >
-                    <AddBoxIcon />
-                  </IconButton>
-                </Grid>
+                <Hidden xsDown>
+                  <Grid item>
+                    <IconButton
+                      aria-label="add"
+                      color="primary"
+                      style={{ paddingTop: 0 }}
+                      onClick={() => changeSpeed(SPEED_SLIDER_JUMP)}
+                    >
+                      <AddBoxIcon />
+                    </IconButton>
+                  </Grid>
+                </Hidden>
               </Grid>
             </div>
           </Grid>
-          <Grid className="buttons, vertical-align" item xs={1}>
+          <Grid className="buttons, vertical-align" item lg={1} xs={4}>
             <Button
               variant="contained"
               style={{
@@ -162,7 +172,7 @@ export default function NavBar() {
               New
             </Button>
           </Grid>
-          <Grid item xs={3} style={{ textAlign: 'center' }}>
+          <Grid item lg={3} xs style={{ textAlign: 'center' }}>
             <ToggleButtonGroup
               className="toggle-group"
               orientation="vertical"
