@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionType } from '../../redux/actionTypes';
 import './body.css';
@@ -33,6 +33,8 @@ export default function Body() {
   const quickChosenNode = useSelector((state: any) => state.quickChosenNode);
   const quickSwapNode = useSelector((state: any) => state.quickSwapNode);
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -56,7 +58,11 @@ export default function Body() {
     dispatch({ type: ActionType.NEW_ARRAY });
   }, [arraySize]);
 
-  const width = Math.floor((window.innerWidth - 200) / array.length);
+  useEffect(() => {
+    window.addEventListener('resize', (event: any) => setWindowWidth(event.target.innerWidth));
+  });
+
+  const width = Math.floor((windowWidth - 200) / array.length);
   const margin = array.length < 5 ? 10 : 2;
   const color = 'white';
   const fontSize = width > 70 ? 20 : 8;
