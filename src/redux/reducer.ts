@@ -24,6 +24,8 @@ export function reducer(state: AppState, action: Action): AppState {
     SET_QUICK_PIVOT_NODE,
     SET_QUICK_SUB_ARRAY,
     SET_QUICK_SWAP_NODE,
+    SET_INSERTION_CURRENT_NODE,
+    SET_INSERTION_SWITCH_NODE,
   } = ActionType;
   switch (type) {
     case SET_SPEED:
@@ -57,6 +59,8 @@ export function reducer(state: AppState, action: Action): AppState {
         quickPivotNode: -1,
         quickSubArray: {},
         quickSwapNode: -1,
+        insertionCurrentNode: -1,
+        insertionSwitchNode: -1,
       };
     case NEW_ARRAY:
       return {
@@ -134,7 +138,16 @@ export function reducer(state: AppState, action: Action): AppState {
         ...state,
         quickChosenNode: payload,
       };
-
+    case SET_INSERTION_CURRENT_NODE:
+      return {
+        ...state,
+        insertionCurrentNode: payload,
+      };
+    case SET_INSERTION_SWITCH_NODE:
+      return {
+        ...state,
+        insertionSwitchNode: payload,
+      };
     default:
       return state;
   }

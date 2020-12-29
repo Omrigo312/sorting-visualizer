@@ -19,6 +19,7 @@ import {
   BUBBLE_SORT,
   MERGE_SORT,
   QUICK_SORT,
+  INSERTION_SORT,
 } from '../../consts';
 import { ActionType } from '../../redux/actionTypes';
 import { useDispatch, useSelector } from 'react-redux';
@@ -188,8 +189,8 @@ export default function NavBar() {
               <ToggleButton value={QUICK_SORT} aria-label="quick sort">
                 Quick Sort
               </ToggleButton>
-              <ToggleButton value="some" aria-label="some sort">
-                Some Sort
+              <ToggleButton value={INSERTION_SORT} aria-label="some sort">
+                Insertion Sort
               </ToggleButton>
             </ToggleButtonGroup>
           </Grid>

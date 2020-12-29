@@ -24,4 +24,6 @@ export class AppState {
   public quickCheckNode: number = -1;
   public quickChosenNode: number = -1;
   public quickSwapNode: number = -1;
+  public insertionCurrentNode: number = -1;
+  public insertionSwitchNode: number = -1;
 }

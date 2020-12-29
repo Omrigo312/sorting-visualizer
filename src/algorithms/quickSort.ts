@@ -13,28 +13,28 @@ const createSubArray = (start: number, end: number) => {
 
 const partition = async (dispatch: Dispatch, array: number[], start: number, end: number) => {
   dispatch({ type: ActionType.SET_QUICK_SUB_ARRAY, payload: createSubArray(start, end) });
-  await delay(0);
+  await delay();
 
   let i = start - 1; // index of smaller element
   let pivot = array[end];
 
   dispatch({ type: ActionType.SET_QUICK_SWAP_NODE, payload: i + 1 });
   dispatch({ type: ActionType.SET_QUICK_PIVOT_NODE, payload: end });
-  await delay(0);
+  await delay();
 
   for (let j = start; j < end; j++) {
     dispatch({ type: ActionType.SET_QUICK_CHECK_NODE, payload: j });
     dispatch({ type: ActionType.SET_QUICK_SWAP_NODE, payload: i + 1 });
-    await delay(0);
+    await delay();
     if (array[j] <= pivot) {
       dispatch({ type: ActionType.SET_QUICK_CHOSEN_NODE, payload: j });
-      await delay(0);
+      await delay();
       i++;
       [array[i], array[j]] = [array[j], array[i]];
       dispatch({ type: ActionType.SET_QUICK_CHOSEN_NODE, payload: i });
-      await delay(0);
+      await delay();
       dispatch({ type: ActionType.SET_QUICK_SWAP_NODE, payload: i + 1 });
-      await delay(0);
+      await delay();
       dispatch({ type: ActionType.SET_QUICK_CHOSEN_NODE, payload: -1 });
     }
   }
