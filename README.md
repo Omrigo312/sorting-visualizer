@@ -9,6 +9,6 @@ In this project i have used React & Redux, Typescript, MaterialUI.
 I just Googled 'most popular sorting algorithms' and took the top 4 - BubbleSort, InsertionSort, MergeSort, QuickSort.
 
 ### Overall:
-I have written this project entirely by myself (also the idea was inspired by a youtube video...)
+I have written this project entirely by myself (although the idea was inspired by a youtube video...)
 I encourage you to have a look! https://omrigo312.github.io/sorting-visualizer/
 
